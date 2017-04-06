@@ -1,0 +1,18 @@
+{
+  "name": "platewatch-image-uploader",
+  "version": "1.0.0",
+  "description": "This will be used to upload images and store them in an s3 bucket",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "author": "Nestor Zepeda",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^4.0.0"
+  }
+}
