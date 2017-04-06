@@ -24,26 +24,35 @@
 
 </head>
 <body ng-controller="UploadController">
-  <div class="container-fluid">
-    <div class="no-top-marg centered">
-      <h1>Upload Images to S3</h1>
-    </div>
-      <!-- The Upload Form -->
+  <div class="row">
+    <div class="col-md-2"></div>
       <div class="col-md-8">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <input class="bottom-marg-15" type="file" name="file" file></input>
-            <!-- Progress Bar -->
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="{{ uploadProgress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ uploadProgress }}%;">
-                {{ uploadProgress == 0 ? '' : uploadProgress + '%' }}
+        <div class="container-fluid">
+          <div class="no-top-marg centered">
+            <h1>Upload Images to S3</h1>
+          </div>
+            <!-- The Upload Form -->
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="panel panel-default uploader">
+                <div class="panel-body">
+                  <input class="bottom-marg-15" type="file" name="file" file></input>
+                  <!-- Progress Bar -->
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ uploadProgress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ uploadProgress }}%;">
+                      {{ uploadProgress == 0 ? '' : uploadProgress + '%' }}
+                    </div>
+                  </div>            
+                  <a class="btn btn-primary btn-block btn-lg" ng-click="upload()">Upload</a>
+                </div>
               </div>
-            </div>            
-            <a class="btn btn-primary btn-block btn-lg" ng-click="upload()">Upload</a>
+            </div>
+            <div class="col-md-2"></div>
           </div>
         </div>
-      </div>     
-    </div>
-  </div>          
+        <div class="col-md-2"></div>
+        </div>
+    </div> 
+  </div>         
 </body>
 </html>
