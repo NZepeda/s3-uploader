@@ -3,15 +3,18 @@
 var express = require('express');
 var app = express();
 
-// Route for the root index file
-
-app.get('/', function(req, res){
-	res.sendFile(__dirname + '/index.html');
+// Route for the uploading view
+app.get('/upload', function(req, res){
+	res.sendFile(__dirname + '/client/views/image-uploader.html');
 });
 
-app.use('/js', express.static(__dirname + "/js/"));
-app.use('/css', express.static(__dirname + '/css/'));
-app.use('/components', express.static(__dirname + '/components/'));
+app.get('/view', function(req, res){
+    res.sendFile(__dirname + '/client/views/test.html');
+})
+
+app.use('/js', express.static(__dirname + "/client/js/"));
+app.use('/css', express.static(__dirname + '/client/css/'));
+app.use('/components', express.static(__dirname + '/client/components/'));
 
 var port = process.env.PORT || 8000;
 
