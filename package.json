@@ -13,6 +13,7 @@
   "author": "Nestor Zepeda",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^4.0.0"
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2"
   }
 }
