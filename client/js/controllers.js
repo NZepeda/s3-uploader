@@ -7,12 +7,17 @@ var aws_access_key = "";
 var aws_s3_bucket = "platewatch-images";
 var aws_s3_bucket_region = "us-west-1"
 
-controllerModule.controller('UploadController',['$scope', 'Data', function($scope, Data) {
-  
+controllerModule.controller('UploadController',['$scope', '$q','Data', function($scope, $q, Data) {
+
   $scope.sizeLimit      = 10585760; // 10MB in Bytes
   $scope.uploadProgress = 0;
   $scope.creds          = {};
-
+  $scope.new = [];
+  $scope.tags = [
+  { text: "Tag1" },
+  { text: "Tag2" },
+  { text: "Tag3" }
+];
   $scope.upload = function() {
 
     // Testing
@@ -24,10 +29,10 @@ controllerModule.controller('UploadController',['$scope', 'Data', function($scop
     AWS.config.update({ accessKeyId: aws_access_key, secretAccessKey: aws_secret_key });
 
     // Set the region where the bucket lives
-    AWS.config.region = aws_s3_bucket_region; 
+    AWS.config.region = aws_s3_bucket_region;
 
     var bucket = new AWS.S3({ params: { Bucket: aws_s3_bucket} });
-    
+
     if($scope.file) {
 
         // Perform File Size Check First
@@ -39,10 +44,10 @@ controllerModule.controller('UploadController',['$scope', 'Data', function($scop
 
         // Perform file type check - ensure only images are being uploaded
         if(!$scope.isImage($scope.getExtension($scope.file.name))){
-          toastr.error('Sorry, you can only upload images.'); 
+          toastr.error('Sorry, you can only upload images.');
           return false;
         }
-          
+
 
         // Prepend Unique String To Prevent Overwrites
         var uniqueFileName = $scope.uniqueString() + '-' + $scope.file.name;
@@ -52,6 +57,7 @@ controllerModule.controller('UploadController',['$scope', 'Data', function($scop
         bucket.putObject(params, function(err, data) {
           if(err) {
             toastr.error(err.message,err.code);
+            console.log(err.message);
             return false;
           }
           else {
@@ -82,7 +88,7 @@ controllerModule.controller('UploadController',['$scope', 'Data', function($scop
       return Math.round($scope.sizeLimit / 1024 / 1024) + 'MB';
     };
 
-  // Generates a unique string in order to avoid possible name collisions on S3 
+  // Generates a unique string in order to avoid possible name collisions on S3
   $scope.uniqueString = function() {
     var text     = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -112,5 +118,3 @@ controllerModule.controller('UploadController',['$scope', 'Data', function($scop
     return false;
 }
 }]);
-
-

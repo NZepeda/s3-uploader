@@ -4,6 +4,8 @@ var express = require('express');
 var mongoose = require('mongoose');
 var fs = require('fs');
 
+require('./server/models/imagePost');
+
 var app = express();
 
 var port = process.env.PORT || 8000;

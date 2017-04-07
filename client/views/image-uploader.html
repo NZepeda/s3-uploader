@@ -10,16 +10,22 @@
   <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="components/toastr/toastr.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="scripts/ng-tags-input/build/ng-tags-input.css">
 
   <!-- JavaScript Libs -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>   
-  <script src="components/angular/angular.js"></script> 
-  <script src="components/toastr/toastr.min.js"></script>    
-  <script src="components/aws-sdk-js/dist/aws-sdk.min.js"></script> 
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <script src="scripts/angular/angular.js"></script>
+  <script src="components/toastr/toastr.min.js"></script>
+  <script src="components/aws-sdk-js/dist/aws-sdk.min.js"></script>
+  <script src="scripts/ng-tags-input/build/ng-tags-input.js"></script>
+
 
   <!-- Our JavaScript -->
-  <script src="js/application.js"></script> 
-  <script src="js/controllers.js"></script>   
+  <script src="js/application.js"></script>
+  <script src="js/controllers.js"></script>
   <script src="js/directives.js"></script>
   <script src="js/services.js"></script>
 
@@ -43,7 +49,14 @@
                     <div class="progress-bar" role="progressbar" aria-valuenow="{{ uploadProgress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ uploadProgress }}%;">
                       {{ uploadProgress == 0 ? '' : uploadProgress + '%' }}
                     </div>
-                  </div>            
+                  </div>
+
+                  <!-- Tag selection input -->
+                  <div class="tag-selection">
+                    <tags-input ng-model="new">
+                      <auto-complete source="tags"></auto-complete>
+                    </tags-input>
+                  </div>
                   <a class="btn btn-primary btn-block btn-lg" ng-click="upload()">Upload</a>
                 </div>
               </div>
@@ -53,7 +66,7 @@
         </div>
         <div class="col-md-2"></div>
         </div>
-    </div> 
-  </div>         
+    </div>
+  </div>
 </body>
 </html>

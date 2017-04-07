@@ -21,4 +21,5 @@ module.exports = function(app){
     app.use('/js', express.static(__dirname + '/../client/js'));
     app.use('/css', express.static(__dirname + '/../client/css'));
     app.use('/components', express.static(__dirname + '/../client/components'));
+    app.use('/scripts', express.static(__dirname + '/../node_modules'));
 }

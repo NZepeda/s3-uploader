@@ -13,10 +13,12 @@
   "author": "Nestor Zepeda",
   "license": "ISC",
   "dependencies": {
+    "angular": "^1.6.4",
     "angular-route": "^1.6.4",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "mongodb": "^2.2.25",
-    "mongoose": "^4.9.3"
+    "mongoose": "^4.9.3",
+    "ng-tags-input": "^3.1.2"
   }
 }

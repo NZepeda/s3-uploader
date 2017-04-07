@@ -1,16 +1,23 @@
 // Houses all of our endpoints
+var mongoose = require('mongoose'),
+ImagePost = mongoose.model('ImagePost');
 
 // Query mongodb to get a fullList of all of our images
 exports.findAll = function(req, res){
-    res.send([{
-        "id": 1,
-        "name": "Max",
-        "band": "Maximum Pain",
-        "instrument": "guitar"
-    }]);
+    ImagePost.find({}, function(err, results){
+      return res.send(JSON.stringify(results));
+    });
 };
 
 // This should add to our mongo collection
-exports.add = function(){
-    res.send(200, "Added succeeded");
+exports.add = function(req, res){
+    ImagePost.create(req.query, function(err, imagepost){
+      if(err){
+        res.send(500, "Unable to add image post");
+        return console.log(err);
+      }
+
+      res.setHeader('Content-Type', 'application/json');
+      res.send(200, JSON.stringify(req.query));
+    });
 };
