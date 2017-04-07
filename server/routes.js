@@ -1,0 +1,24 @@
+var express = require('express');
+var path = require('path');
+
+module.exports = function(app){
+
+    //  Route for the image posts endpoint
+    var imagePost = require('./controllers/imagePostController');
+    console.log(imagePost);
+    app.post('/imagePost', imagePost.add);
+    app.get('/imagePost', imagePost.findAll);
+
+    //Route for getting assets
+    app.get('/upload', function(req, res){
+        res.sendFile(path.resolve(__dirname + '/../client/views/image-uploader.html'));
+    });
+
+    app.get('/view', function(req, res){
+        res.sendFile(__dirname + '/../client/views/test.html');
+    });
+
+    app.use('/js', express.static(__dirname + '/../client/js'));
+    app.use('/css', express.static(__dirname + '/../client/css'));
+    app.use('/components', express.static(__dirname + '/../client/components'));
+}

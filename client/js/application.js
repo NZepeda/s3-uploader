@@ -1,6 +1,6 @@
-'use strict';
-
-var app = angular.module('angular-s3-upload', [
-    'controllers',
-    'directives'
+// Declares all of our different modules
+var app = angular.module('Platewatch', [
+    'Platewatch.services',
+    'Platewatch.directives',
+    'Platewatch.controllers'
 ]);

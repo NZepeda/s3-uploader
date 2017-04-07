@@ -1,17 +1,24 @@
-'use strict';
 
-var controllers = angular.module('controllers', []);
+var controllerModule = angular.module('Platewatch.controllers', ['Platewatch.services']);
+
+// TODO Figure out best practice for storing these keys. Place them in config somewhere
 var aws_secret_key= "Ubb/XZ/uuSoqb3JQFvtro6G151Z9YenfoRU6Znys";
 var aws_access_key = "AKIAIYBTAE7SSCIYHPXQ";
 var aws_s3_bucket = "platewatch-images";
 var aws_s3_bucket_region = "us-west-1"
 
-controllers.controller('UploadController',['$scope', function($scope) {
+controllerModule.controller('UploadController',['$scope', 'Data', function($scope, Data) {
+  
   $scope.sizeLimit      = 10585760; // 10MB in Bytes
   $scope.uploadProgress = 0;
   $scope.creds          = {};
 
   $scope.upload = function() {
+
+    // Testing
+    // Data.getPosts().then(function(response){
+    //   console.log(response);
+    // });
 
     // Set the credentials for our S3 bucket
     AWS.config.update({ accessKeyId: aws_access_key, secretAccessKey: aws_secret_key });
@@ -104,5 +111,6 @@ controllers.controller('UploadController',['$scope', function($scope) {
     }
     return false;
 }
-
 }]);
+
+

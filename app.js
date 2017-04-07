@@ -1,22 +1,25 @@
 'use strict'
 
 var express = require('express');
+var mongoose = require('mongoose');
+var fs = require('fs');
+
 var app = express();
 
-// Route for the uploading view
-app.get('/upload', function(req, res){
-	res.sendFile(__dirname + '/client/views/image-uploader.html');
+var port = process.env.PORT || 8000;
+
+// TODO: Dynamically create this url -- use dotenv
+var mongoUri = 'mongodb://localhost/noderest';
+
+mongoose.connect(mongoUri);
+
+var db = mongoose.connection;
+db.on('error', function () {
+  throw new Error('unable to connect to database at ' + mongoUri);
 });
 
-app.get('/view', function(req, res){
-    res.sendFile(__dirname + '/client/views/test.html');
-})
+require('./server/routes.js')(app);
 
-app.use('/js', express.static(__dirname + "/client/js/"));
-app.use('/css', express.static(__dirname + '/client/css/'));
-app.use('/components', express.static(__dirname + '/client/components/'));
-
-var port = process.env.PORT || 8000;
 
 app.listen(port, function(req, res){
 	console.log("I\'m listening");
