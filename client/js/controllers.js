@@ -2,8 +2,8 @@
 var controllerModule = angular.module('Platewatch.controllers', ['Platewatch.services']);
 
 // TODO Figure out best practice for storing these keys. Place them in config somewhere
-var aws_secret_key= "Ubb/XZ/uuSoqb3JQFvtro6G151Z9YenfoRU6Znys";
-var aws_access_key = "AKIAIYBTAE7SSCIYHPXQ";
+var aws_secret_key= "";
+var aws_access_key = "";
 var aws_s3_bucket = "platewatch-images";
 var aws_s3_bucket_region = "us-west-1"
 
