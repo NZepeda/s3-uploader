@@ -5,7 +5,7 @@ module.exports = function(app){
 
     //  Route for the image posts endpoint
     var imagePost = require('./controllers/imagePostController');
-
+    console.log(imagePost);
     app.post('/imagePost', imagePost.add);
     app.get('/imagePost', imagePost.findAll);
 
