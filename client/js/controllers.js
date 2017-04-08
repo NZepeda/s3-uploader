@@ -12,14 +12,27 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
   $scope.sizeLimit      = 10585760; // 10MB in Bytes
   $scope.uploadProgress = 0;
   $scope.creds          = {};
-  $scope.new = [];
+
+  $scope.formatDateToUtc = function(){
+    return  new Date().toUTCString();
+  }
+
+  $scope.model = {
+    date: $scope.formatDateToUtc(),
+    description: "",
+    imageLink: "",
+    tags:[]
+  }
+
   $scope.tags = [
   { text: "Tag1" },
   { text: "Tag2" },
   { text: "Tag3" }
 ];
+
   $scope.upload = function() {
 
+    console.log($scope.model);
     // Testing
     // Data.getPosts().then(function(response){
     //   console.log(response);
@@ -75,7 +88,12 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
           $scope.uploadProgress = Math.round(progress.loaded / progress.total * 100);
           $scope.file = null;
           $scope.$digest();
+        })
+        .on('success', function(results){
+          /// Grab image key name from here and use that to build the image url!
+          console.log(results);
         });
+
       }
       else {
         // No File Selected
@@ -117,4 +135,5 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
     }
     return false;
 }
+
 }]);
