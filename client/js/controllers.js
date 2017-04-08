@@ -2,8 +2,8 @@
 var controllerModule = angular.module('Platewatch.controllers', ['Platewatch.services']);
 
 // TODO Figure out best practice for storing these keys. Place them in config somewhere
-var aws_secret_key= "";
-var aws_access_key = "";
+var aws_secret_key= "EpKD8mK6PfJLexBSTGYUA+TyyDZePvsL0Z1CkgVO";
+var aws_access_key = "AKIAJ7JK4ARE6R4LZ2XQ";
 var aws_s3_bucket = "platewatch-images";
 var aws_s3_bucket_region = "us-west-1"
 
@@ -32,7 +32,6 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
 
   $scope.upload = function() {
 
-    console.log($scope.model);
     // Testing
     // Data.getPosts().then(function(response){
     //   console.log(response);
@@ -90,8 +89,13 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
           $scope.$digest();
         })
         .on('success', function(results){
-          /// Grab image key name from here and use that to build the image url!
-          console.log(results);
+
+          // Grab image name from the response
+          var imageLink = results.request.httpRequest.path;
+          if(imageLink)
+            $scope.model.imageLink = $scope.buildImageLink(imageLink);
+
+          console.log($scope.model);
         });
 
       }
@@ -99,6 +103,11 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
         // No File Selected
         toastr.error('Please select a file to upload');
       }
+    }
+
+    $scope.buildImageLink = function(imageKeyName){
+      // ToDo: This should probably not be hard coded
+      return "https://s3-us-west-1.amazonaws.com/platewatch-images" + imageKeyName;
     }
 
     $scope.fileSizeLabel = function() {
