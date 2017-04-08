@@ -32,7 +32,6 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
 
   $scope.upload = function() {
 
-    console.log($scope.model);
     // Testing
     // Data.getPosts().then(function(response){
     //   console.log(response);
@@ -91,7 +90,12 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
         })
         .on('success', function(results){
           /// Grab image key name from here and use that to build the image url!
-          console.log(results);
+          var imageKeyName = results.request.httpRequest.path;
+
+          if(imageKeyName)
+            $scope.model.imageLink = $scope.buildImageLink(imageKeyName);
+          
+          console.log($scope.model);
         });
 
       }
@@ -99,6 +103,10 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
         // No File Selected
         toastr.error('Please select a file to upload');
       }
+    }
+
+    $scope.buildImageLink = function(imageKeyName){
+      return "https://s3-us-west-1.amazonaws.com/platewatch-images" + imageKeyName;
     }
 
     $scope.fileSizeLabel = function() {
