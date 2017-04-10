@@ -11,15 +11,11 @@ exports.findAll = function(req, res){
 
 // This should add to our mongo collection
 exports.add = function(req, res){
-    console.log(req);
     ImagePost.create(req.body, function(err, imagepost){
       if(err){
         res.send(500, "Unable to add image post");
-        return console.log(err);
       }
-      console.log()
-
       res.setHeader('Content-Type', 'application/json');
-      res.send(imagepost);
+      res.send(200, imagepost);
     });
 };

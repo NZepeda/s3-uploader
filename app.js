@@ -22,7 +22,6 @@ db.on('error', function () {
 
 require('./server/routes.js')(app);
 
-
 app.listen(port, function(req, res){
 	console.log("I\'m listening");
 });

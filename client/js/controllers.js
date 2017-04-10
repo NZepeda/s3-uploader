@@ -28,6 +28,7 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
     tags:[]
   }
 
+  // ToDo: Grab these from Mongo instead
   $scope.tags = [
   { text: "Tag1" },
   { text: "Tag2" },
@@ -35,11 +36,6 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
 ];
 
   $scope.upload = function() {
-
-    // Testing
-    // Data.getPosts().then(function(response){
-    //   console.log(response);
-    // });
 
     // Set the credentials for our S3 bucket
     AWS.config.update({ accessKeyId: aws_access_key, secretAccessKey: aws_secret_key });
@@ -96,14 +92,16 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
           /// Grab image key name from here and use that to build the image url!
           var imageKeyName = results.request.httpRequest.path;
 
-          if(imageKeyName)
+          if(imageKeyName){
             $scope.model.imageLink = $scope.buildImageLink(imageKeyName);
-
-          // Make the post API call
-          Data.addNewPost(JSON.stringify($scope.model)).then(function(response){
-            console.log(response);
-          });
-          
+            // Make the post API call
+            Data.addNewPost(JSON.stringify($scope.model)).then(function(response){
+              console.log(response);
+            });
+          }
+          else{
+            console.log("Error: Failed to get the link for the image");
+          }
         });
 
       }
