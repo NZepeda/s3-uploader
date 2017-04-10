@@ -5,7 +5,7 @@ var ImagePostSchema = new Schema({
   date: String,
   description: String,
   imageLink: String,
-  Tags: [{
+  tags: [{
     text : String
   }]
 });

@@ -17,9 +17,13 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
     return  new Date().toUTCString();
   }
 
+  var formatedDate = $scope.formatDateToUtc();
+  var description = $scope.description;
+
+
   $scope.model = {
-    date: $scope.formatDateToUtc(),
-    description: "",
+    date: formatedDate,
+    description: description,
     imageLink: "",
     tags:[]
   }
@@ -94,8 +98,12 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
 
           if(imageKeyName)
             $scope.model.imageLink = $scope.buildImageLink(imageKeyName);
+
+          // Make the post API call
+          Data.addNewPost(JSON.stringify($scope.model)).then(function(response){
+            console.log(response);
+          });
           
-          console.log($scope.model);
         });
 
       }

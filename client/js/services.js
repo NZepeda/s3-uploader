@@ -18,6 +18,24 @@ data.getPosts = function(){
     });
 }
 
+data.addNewPost = function(imagePost){
+
+    console.log(imagePost);
+    var req = {
+        method: 'POST',
+        url: 'http://localhost:8000/addNewImagePost',
+        data: imagePost
+    }
+
+   return $http(req).then(function(response){
+       console.log(response);
+       return response;
+   }).catch(function(error){
+       console.log("Error:" + error);
+       
+   });
+}
+
 return data;
 
 }]);

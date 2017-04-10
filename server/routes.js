@@ -1,12 +1,13 @@
 var express = require('express');
 var path = require('path');
+var bodyParser = require('body-parser');
 
 module.exports = function(app){
 
     //  Route for the image posts endpoint
     var imagePost = require('./controllers/imagePostController');
     
-    app.post('/imagePost', imagePost.add);
+    app.post('/addNewImagePost', bodyParser.json(), imagePost.add);
     app.get('/imagePost', imagePost.findAll);
 
     //Route for getting assets
