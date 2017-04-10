@@ -2,9 +2,10 @@
   "name": "platewatch-image-uploader",
   "version": "1.0.0",
   "description": "This will be used to upload images and store them in an s3 bucket",
-  "main": "index.html",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,9 @@
     "mongodb": "^2.2.25",
     "mongoose": "^4.9.3",
     "ng-tags-input": "^3.1.2"
+  },
+  "engines" : {
+    "node" : "~4.2.4",
+    "npm" : "2.14.12"
   }
 }

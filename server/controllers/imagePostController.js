@@ -16,6 +16,6 @@ exports.add = function(req, res){
         res.send(500, "Unable to add image post");
       }
       res.setHeader('Content-Type', 'application/json');
-      res.send(200, imagepost);
+      res.status(200).send(imagepost);
     });
 };
