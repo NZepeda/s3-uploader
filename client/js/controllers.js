@@ -22,7 +22,7 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
 
   $scope.model = {
     date: formatedDate,
-    description: description,
+    description: "",
     imageLink: "",
     tags:[]
   }
