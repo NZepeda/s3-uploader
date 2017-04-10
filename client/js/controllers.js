@@ -12,14 +12,13 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
   $scope.sizeLimit      = 10585760; // 10MB in Bytes
   $scope.uploadProgress = 0;
   $scope.creds          = {};
+  $scope.description = "";
 
   $scope.formatDateToUtc = function(){
     return  new Date().toUTCString();
   }
 
   var formatedDate = $scope.formatDateToUtc();
-  var description = $scope.description;
-
 
   $scope.model = {
     date: formatedDate,
@@ -34,6 +33,10 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
   { text: "Tag2" },
   { text: "Tag3" }
 ];
+
+  $scope.$watch('model.description', function(newValue, oldValue){
+      $scope.model.description = newValue;
+  });
 
   $scope.upload = function() {
 
@@ -93,6 +96,7 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
           var imageKeyName = results.request.httpRequest.path;
 
           if(imageKeyName){
+            console.log($scope.model);
             $scope.model.imageLink = $scope.buildImageLink(imageKeyName);
             // Make the post API call
             Data.addNewPost(JSON.stringify($scope.model)).then(function(response){
