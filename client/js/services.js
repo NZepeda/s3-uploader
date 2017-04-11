@@ -8,7 +8,7 @@ var data = {};
 data.getPosts = function(){
     return $http({
         method: 'GET',
-        url: 'http://localhost:8000/getImagePosts'
+        url: 'http://' + location.host + '/getImagePosts'
     }).
     success(function(response){
         return response;
@@ -21,11 +21,11 @@ data.getPosts = function(){
 data.getConfig = function(){
     return $http({
         method: 'POST',
-        url: 'https://localhost:8000/config'
+        url: 'http://' + location.host + '/config'
     }).then(function(response){
         return response;
     }).catch(function(error){
-        console.log('Error: ' + error);
+        console.log(error);
     });
 }
 
@@ -33,14 +33,14 @@ data.addNewPost = function(imagePost){
 
     var req = {
         method: 'POST',
-        url: 'http://localhost:8000/addNewImagePost',
+        url: 'http://' + location.host + 'addNewImagePost',
         data: imagePost
     }
 
    return $http(req).then(function(response){
        return response;
    }).catch(function(error){
-       console.log("Error:" + error);
+       console.log(error);
    });
 }
 
