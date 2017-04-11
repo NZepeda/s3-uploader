@@ -26,8 +26,6 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
       aws_access_key = response.data.accessKey;
       aws_secret_key = response.data.secretKey;
     }
-    console.log(aws_access_key);
-    console.log(aws_secret_key);
   });
 
   $scope.model = {
@@ -107,9 +105,10 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
 
           if(imageKeyName){
             $scope.model.imageLink = $scope.buildImageLink(imageKeyName);
+
             // Make the post API call
             Data.addNewPost(JSON.stringify($scope.model)).then(function(response){
-              console.log(response);
+              //console.log(response);
             });
           }
           else{
