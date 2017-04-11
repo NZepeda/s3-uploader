@@ -33,7 +33,7 @@ data.addNewPost = function(imagePost){
 
     var req = {
         method: 'POST',
-        url: 'http://' + location.host + 'addNewImagePost',
+        url: 'http://' + location.host + '/addNewImagePost',
         data: imagePost
     }
 
