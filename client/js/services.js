@@ -21,7 +21,7 @@ data.getPosts = function(){
 data.getConfig = function(){
     return $http({
         method: 'POST',
-        url: 'http://localhost:8000/config'
+        url: 'https://localhost:8000/config'
     }).then(function(response){
         return response;
     }).catch(function(error){
