@@ -6,10 +6,12 @@ module.exports = function(app){
 
     //  Route for the image posts endpoint
     var imagePost = require('./controllers/imagePostController');
+    var sysConfig = require('./controllers/systemController');
 
     // API paths
     app.post('/addNewImagePost', bodyParser.json(), imagePost.add);
-    app.get('/imagePost', imagePost.findAll);
+    app.get('/getImagePosts', imagePost.findAll);
+    app.post('/config', bodyParser.json(), sysConfig.getConfig)
 
     //Route for getting assets
     app.get('/upload', function(req, res){

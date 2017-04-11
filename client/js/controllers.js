@@ -20,6 +20,14 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
 
   var formatedDate = $scope.formatDateToUtc();
 
+  // Get AWS credentials
+  Data.getConfig().then(function(response){
+    if(response){
+      aws_access_key = response.data.accessKey;
+      aws_secret_key = response.data.secretKey;
+    }
+  });
+
   $scope.model = {
     date: formatedDate,
     description: "",
