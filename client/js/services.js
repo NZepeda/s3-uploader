@@ -44,6 +44,18 @@ data.addNewPost = function(imagePost){
    });
 }
 
+data.getTags = function(){
+  return $http({
+    method: 'GET',
+    url: 'http://' +  location.host + '/getTags'
+  }).
+  then(function(response){
+    return response;
+  }).catch(function(error){
+    console.log(error);
+  });
+}
+
 return data;
 
 }]);

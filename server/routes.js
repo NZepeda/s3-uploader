@@ -11,7 +11,8 @@ module.exports = function(app){
     // API paths
     app.post('/addNewImagePost', bodyParser.json(), imagePost.add);
     app.get('/getImagePosts', imagePost.findAll);
-    app.post('/config', bodyParser.json(), sysConfig.getConfig)
+    app.post('/config', bodyParser.json(), sysConfig.getConfig);
+    app.get('/getTags', sysConfig.getTags);
 
     //Route for getting assets
     app.get('/upload', function(req, res){

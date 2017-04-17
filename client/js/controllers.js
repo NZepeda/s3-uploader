@@ -36,7 +36,12 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
   }
 
   // ToDo: Grab these from Mongo instead
-  $scope.tags = [
+  Data.getTags().then(function(response){
+    console.log(response);
+    $scope.tags = response.data;
+  });
+
+  $scope.dbTags = [
   { text: "Tag1" },
   { text: "Tag2" },
   { text: "Tag3" }

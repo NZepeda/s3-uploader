@@ -11,6 +11,7 @@ var mongo_host = process.env.DB_HOST;
 var mongo_db = process.env.DB_NAME;
 
 require('./server/models/imagePost');
+require('./server/models/tag');
 
 var app = express();
 
