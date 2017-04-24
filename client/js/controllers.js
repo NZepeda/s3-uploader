@@ -12,7 +12,6 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
   $scope.sizeLimit      = 10585760; // 10MB in Bytes
   $scope.uploadProgress = 0;
   $scope.creds          = {};
-  $scope.description = "";
 
   $scope.formatDateToUtc = function(){
     return  new Date().toUTCString();
@@ -37,15 +36,8 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
 
   // ToDo: Grab these from Mongo instead
   Data.getTags().then(function(response){
-    console.log(response);
     $scope.tags = response.data;
   });
-
-  $scope.dbTags = [
-  { text: "Tag1" },
-  { text: "Tag2" },
-  { text: "Tag3" }
-];
 
   $scope.$watch('model.description', function(newValue, oldValue){
       $scope.model.description = newValue;
@@ -85,7 +77,7 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
         bucket.putObject(params, function(err, data) {
           if(err) {
             toastr.error(err.message,err.code);
-            console.log(err.message);
+        
             return false;
           }
           else {
@@ -101,7 +93,6 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
         })
         .on('httpUploadProgress',function(progress) {
           $scope.uploadProgress = Math.round(progress.loaded / progress.total * 100);
-          $scope.file = null;
           $scope.$digest();
         })
         .on('success', function(results){
@@ -114,6 +105,7 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
             // Make the post API call
             Data.addNewPost(JSON.stringify($scope.model)).then(function(response){
               //console.log(response);
+              $scope.resetPageInfo();
             });
           }
           else{
@@ -126,6 +118,14 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
         // No File Selected
         toastr.error('Please select a file to upload');
       }
+    }
+
+    $scope.resetPageInfo = function(){
+      $scope.model.imageLink = "";
+      $scope.model.description = "";
+      $scope.model.tags = [];
+      $scope.model.date = "";
+      $scope.file = null;
     }
 
     $scope.buildImageLink = function(imageKeyName){

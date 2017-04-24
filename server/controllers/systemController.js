@@ -20,7 +20,6 @@ exports.getTags = function(req, res){
       res.status(500).send("Unable to retrive tags!");
     }
     else{
-      console.log(tags);
       res.status(200).send(tags);
     }
   })
