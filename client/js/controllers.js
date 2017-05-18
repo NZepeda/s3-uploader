@@ -1,7 +1,6 @@
 
 var controllerModule = angular.module('Platewatch.controllers', ['Platewatch.services']);
 
-// TODO Figure out best practice for storing these keys. Place them in config somewhere
 var aws_secret_key= "";
 var aws_access_key = "";
 var aws_s3_bucket = "platewatch-images";
@@ -72,12 +71,12 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
         // Prepend Unique String To Prevent Overwrites
         var uniqueFileName = $scope.uniqueString() + '-' + $scope.file.name;
 
-        var params = { Key: uniqueFileName, ContentType: $scope.file.type, Body: $scope.file, ServerSideEncryption: 'AES256' };
+        var awsParams = { Key: uniqueFileName, ContentType: $scope.file.type, Body: $scope.file, ServerSideEncryption: 'AES256' };
 
-        bucket.putObject(params, function(err, data) {
+        bucket.putObject(awsParams, function(err, data) {
           if(err) {
             toastr.error(err.message,err.code);
-        
+
             return false;
           }
           else {
@@ -102,7 +101,7 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
           if(imageKeyName){
             $scope.model.imageLink = $scope.buildImageLink(imageKeyName);
 
-            // Make the post API call
+            // Make the post API call to persist new post to Mongo
             Data.addNewPost(JSON.stringify($scope.model)).then(function(response){
               //console.log(response);
               $scope.resetPageInfo();
@@ -137,35 +136,35 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
       return Math.round($scope.sizeLimit / 1024 / 1024) + 'MB';
     };
 
-  // Generates a unique string in order to avoid possible name collisions on S3
-  $scope.uniqueString = function() {
-    var text     = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    // Generates a unique string in order to avoid possible name collisions on S3
+    $scope.uniqueString = function() {
+      var text     = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-    for( var i=0; i < 8; i++ ) {
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
+      for( var i=0; i < 8; i++ ) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+      }
+      return text;
     }
-    return text;
-  }
 
-  // Get the file extension
-  $scope.getExtension = function(filename){
-    var parts = filename.split('.');
+    // Get the file extension
+    $scope.getExtension = function(filename){
+      var parts = filename.split('.');
 
-    return parts[parts.length - 1];
-  }
-
-  $scope.isImage = function(extension) {
-
-    switch (extension.toLowerCase()) {
-      case 'jpeg':
-      case 'jpg':
-      case 'gif':
-      case 'bmp':
-      case 'png':
-        return true;
+      return parts[parts.length - 1];
     }
-    return false;
+
+    $scope.isImage = function(extension) {
+
+      switch (extension.toLowerCase()) {
+        case 'jpeg':
+        case 'jpg':
+        case 'gif':
+        case 'bmp':
+        case 'png':
+          return true;
+      }
+      return false;
 }
 
 }]);

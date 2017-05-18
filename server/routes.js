@@ -15,16 +15,28 @@ module.exports = function(app){
     app.get('/getTags', sysConfig.getTags);
 
     //Route for getting assets
-    app.get('/upload', function(req, res){
-        res.sendFile(path.resolve(__dirname + '/../client/views/image-uploader.html'));
-    });
-    app.get('/view', function(req, res){
-        res.sendFile(__dirname + '/../client/views/test.html');
-    });
+    // app.get('/upload', function(req, res){
+    //     res.sendFile(path.resolve(__dirname + '/../client/views/image-uploader.html'));
+    // });
 
     // Static mapping redirects
     app.use('/js', express.static(__dirname + '/../client/js'));
     app.use('/css', express.static(__dirname + '/../client/css'));
     app.use('/components', express.static(__dirname + '/../client/components'));
     app.use('/scripts', express.static(__dirname + '/../node_modules'));
+
+    // Root should return our root index file
+    app.get('/', function(req, res){
+      res.sendFile(path.resolve(__dirname + '/../client/views/index.html'));
+    })
+    // Return our partial views
+    app.get('/views/:view', function(req, res){
+      var name = req.params.view;
+      res.sendFile(path.resolve(__dirname + '/../client/views/' + name + '.html'));
+    })
+    // Redirect everything else back to index.html
+    app.get('*', function(req, res){
+      res.sendFile(path.resolve(__dirname + '/../client/views/index.html'));
+    });
+
 }

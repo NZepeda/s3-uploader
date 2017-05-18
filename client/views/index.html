@@ -1,0 +1,40 @@
+<!doctype html>
+<html ng-app="Platewatch">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Platewatch Image Upload</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="components/toastr/toastr.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="scripts/ng-tags-input/build/ng-tags-input.css">
+
+  <!-- JavaScript Libs -->
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <script src="scripts/angular/angular.js"></script>
+  <script src="components/toastr/toastr.min.js"></script>
+  <script src="components/aws-sdk-js/dist/aws-sdk.min.js"></script>
+  <script src="scripts/ng-tags-input/build/ng-tags-input.js"></script>
+  <script src="scripts/angular-route/angular-route.min.js"></script>
+
+  <!-- Our JavaScript -->
+  <script src="js/application.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/directives.js"></script>
+  <script src="js/services.js"></script>
+
+</head>
+<body>
+
+  <div class="container">
+    <div ng-view></div>
+  </div>
+
+</body>
+</html>
