@@ -10,10 +10,10 @@ data.getPosts = function(){
         method: 'GET',
         url: 'http://' + location.host + '/getImagePosts'
     }).
-    success(function(response){
+    then(function(response){
         return response;
     }).
-    error(function(error){
+    catch(function(error){
         console.log(error);
     });
 }

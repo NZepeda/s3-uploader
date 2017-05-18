@@ -166,5 +166,14 @@ controllerModule.controller('UploadController',['$scope', '$q','Data', function(
       }
       return false;
 }
+}]);
 
+controllerModule.controller('DataVisualizationController', ['$scope', '$q', 'Data', function($scope, $q, Data){
+  $scope.allPosts = [];
+  
+
+  Data.getPosts().then(function(response){
+    console.log(response.data);
+    $scope.allPosts = response.data;
+  });
 }]);

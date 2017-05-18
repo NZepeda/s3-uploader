@@ -35,3 +35,31 @@
 	position: relative;
 }
 
+.data-grid{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.data-grid li{
+	list-style-type: none;
+}
+
+.data-item{
+	margin: 20px;
+}
+
+.post-pic{
+	width: 150px;
+}
+
+.thumbnail {
+	height: 300px;
+	width: 250px;
+	margin: 10px 10px;
+}
+
+.thumbnail img{
+	height: 70%;
+	width: 100%;
+}

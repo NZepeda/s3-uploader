@@ -13,6 +13,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     $routeProvider.when('/', {
       templateUrl:'/views/image-uploader',
       controller: 'UploadController'
+    })
+    .when('/data', {
+      templateUrl: '/views/data-visualization',
+      controller: 'DataVisualizationController'
     });
 
     $locationProvider.html5Mode({
