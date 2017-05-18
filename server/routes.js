@@ -14,11 +14,6 @@ module.exports = function(app){
     app.post('/config', bodyParser.json(), sysConfig.getConfig);
     app.get('/getTags', sysConfig.getTags);
 
-    //Route for getting assets
-    // app.get('/upload', function(req, res){
-    //     res.sendFile(path.resolve(__dirname + '/../client/views/image-uploader.html'));
-    // });
-
     // Static mapping redirects
     app.use('/js', express.static(__dirname + '/../client/js'));
     app.use('/css', express.static(__dirname + '/../client/css'));

@@ -9,12 +9,14 @@ var app = angular.module('Platewatch', [
 
 
 // Configuration
-app.config(['$routeProvider', function($routeProvider){
-
+app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
     $routeProvider.when('/upload', {
       templateUrl:'/views/image-uploader',
       controller: 'UploadController'
-    })
+    });
 
-
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    });
 }]);
