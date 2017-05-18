@@ -10,7 +10,7 @@ var app = angular.module('Platewatch', [
 
 // Configuration
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
-    $routeProvider.when('/upload', {
+    $routeProvider.when('/', {
       templateUrl:'/views/image-uploader',
       controller: 'UploadController'
     });
