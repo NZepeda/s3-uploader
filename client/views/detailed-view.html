@@ -1,0 +1,27 @@
+<div class="detail-view">
+    <div class="row header">
+        <h1 class="centered">Plate {{plateNumber}}</h1>
+    </div>
+    <div class="row submission"  ng-repeat="plate in platePosts">
+        <div class="col-md-4">
+            <!-- Image goes here -->
+            <a ng-href="{{plate.imageLink}}"><img ng-src="{{plate.imageLink}}" height="250px" width="300px"/></a>
+        </div>
+        <div class="col-md-8">
+            <!-- Details go here -->
+            <div class="row">
+                <strong>Upload Date: </strong> {{plate.date}}
+            </div>
+            <div class="row">
+                <strong>Notes: </strong> {{plate.notes}}
+            </div>
+
+            <div class="row">
+                <h4> Animal Data </h4>
+            </div>
+            <div class="row" ng-repeat="animalData in plate.animalData">
+                <strong>{{capitalizeWord(animalData.animalName)}}:</strong> {{animalData.percentage}}
+            </div>
+        </div>
+    </div>
+</div>

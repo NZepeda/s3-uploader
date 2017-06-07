@@ -1,20 +1,32 @@
+<!-- Data Table which shows each plate goes here -->
+
 <div class="data-results">
     <div class="row header">
         <div class="col-md-12 centered">
-            <h1> Data Visualization Page </h1>
+            <h1> Data Visualization </h1>
         </div>   
     </div>
+    <div class="container-fluid" ng-show="dataIsAvailable">
+        <table datatable="ng" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Plate Number</th>
+                    <th>Last Upload</th> 
+                    <th>Plate Salinity Average</th>  
+                    <th>Plate Temperature Average</th>
+                    <th></th> 
+                </tr>
+            </thead>
 
-    <div class="row">
-        <div class="container">
-            <div class="col-xs-4 col-sm-4 col-md-3 thumbnail" ng-repeat="post in allPosts">
-                <a ng-href="{{post.imageLink}}">
-                    <img ng-src= "{{post.imageLink}}">
-                </a>
-                <div class="caption">
-                    <span class="centered"><h3> {{post.description}} </h3></span>
-                </div>
-            </div>
-        </div>
+            <tbody>
+                <tr ng-repeat="post in postsByPlate">
+                    <td>{{ post.plateNumber }}</td>
+                    <td>{{ convertDateToPST(post.date) }}</td>
+                    <td>{{ getSalinityAverage(post.plateNumber) }} ppm</td>
+                    <td>{{ getTemperatureAverage(post.plateNumber) }} C&deg;</td>
+                    <td><a ng-href="/details?plate={{post.plateNumber}}">View More</a></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

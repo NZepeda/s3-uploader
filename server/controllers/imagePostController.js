@@ -19,3 +19,15 @@ exports.add = function(req, res){
       res.status(200).send(imagepost);
     });
 };
+
+exports.findByPlateNumber = function(req, res){
+  
+  ImagePost.find({plateNumber: req.query.plate}, function(err, imageposts){
+    if(err){
+      res.send(500, "Unable to retrieve image posts");
+    }
+    else{
+      return res.send(JSON.stringify(imageposts));
+    }
+  })
+}

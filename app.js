@@ -11,7 +11,7 @@ var mongo_host = process.env.DB_HOST;
 var mongo_db = process.env.DB_NAME;
 
 require('./server/models/imagePost');
-require('./server/models/tag');
+require('./server/models/animalData');
 
 var app = express();
 
@@ -30,7 +30,7 @@ db.on('error', function () {
 require('./server/routes.js')(app);
 
 app.listen(port, function(req, res){
-	console.log("I\'m listening");
+	console.log("I\'m listening on port: " + port);
 });
 
 function buildMongoUrl(user, pass, host, db){

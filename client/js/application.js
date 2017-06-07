@@ -1,10 +1,10 @@
 // Declares all of our different modules
 var app = angular.module('Platewatch', [
     'ngRoute',
+    'ngResource',
     'ngTagsInput',
-    'Platewatch.services',
-    'Platewatch.directives',
-    'Platewatch.controllers'
+    'datatables',
+    'datatables.bootstrap'
 ]);
 
 
@@ -13,10 +13,12 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     $routeProvider.when('/', {
       templateUrl:'/views/image-uploader',
       controller: 'UploadController'
-    })
-    .when('/data', {
+    }).when('/data', {
       templateUrl: '/views/data-visualization',
-      controller: 'DataVisualizationController'
+      controller: 'PlateTableController'
+    }).when('/details', {
+      templateUrl: '/views/detailed-view',
+      controller: 'DetailedViewController'
     });
 
     $locationProvider.html5Mode({

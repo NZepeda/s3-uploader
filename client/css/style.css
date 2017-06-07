@@ -63,3 +63,34 @@
 	height: 70%;
 	width: 100%;
 }
+
+.plate-number button{
+	width: 100%;
+}
+
+.plate-number-option{
+	font-weight: bold;
+}
+
+.dropdown-menu{
+	width: 100%;
+}
+
+th ::after {
+	margin-top: 8px !important;
+}
+
+.submission{
+	margin-top: 10px;
+	
+}
+
+.abiotic-data .col-md-6{
+	padding-left: 0px;
+}
+
+.has-error .form-control{
+	border-color: #a94442;
+	border-width: 1px;
+	box-shadow: 0 0 5px #a94442;
+}
