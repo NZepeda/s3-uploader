@@ -1,9 +1,10 @@
+  <!-- View for the upload page -->
   <div class="row">
     <div class="col-md-2"></div>
       <div class="col-md-8">
         <div class="container-fluid">
           <div class="no-top-marg centered">
-            <h1>Upload Images to S3</h1>
+            <h1>Upload Image</h1>
           </div>
             <!-- The Upload Form -->
             <div class="col-md-12">
@@ -17,22 +18,55 @@
                     </div>
                   </div>
 
+                  <div class="plate-number dropdown">
+                    <label for="plate-number-dropdown"> Plate Number </label>
+                    <button class="btn btn-default dropdown-toggle" id="plate-number-dropdown" type="button" data-toggle="dropdown" aria-expanded="false"> <span class="plate-number-option">{{plateNumber}}</span> <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                      <li ng-repeat="option in dropdownOptions"><a ng-click="didSelectDropDownOption(option)" href="#"><span class="plate-number-option">{{option}}</span></a></li>
+                    </ul>
+                  </div>
+                  <br />
+      
                   <!-- Tag selection input -->
                   <div class="tag-selection">
-                    <tags-input ng-model="model.tags">
-                      <auto-complete source="tags"></auto-complete>
+                    <label for="animal-data-tag">Animal Data</label>
+                    <tags-input ng-model="model.animalData" text="tagText" ng-change="alert('changed')" display-property="tagName" replace-spaces-with-dashes="false" id="animal-data-tag" placeholder="Add Animal Data">
+                      <auto-complete source="tags" max-results-to-show="10" ></auto-complete>
                     </tags-input>
                   </div>
+                  <br />
 
-                  <!-- Description -->
+                  <div class="abiotic-data form-group">
+                    <label for="abiotic-data-input">Abiotic Data</label>
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="input-group salinity-input">
+                            <input type="text" class="form-control" ng-model="model.abioticData.salinity" placeholder="Salinity (ppm)" />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-group temperature-input">
+                            <input type="text" class="form-control" ng-model="model.abioticData.temperature" placeholder="Temperature (C°)" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <br />
+
+                  <!-- Notes -->
                   <div class="form-group">
-                    <label for="description">Description:</label>
-                    <textarea class="form-control" rows="5" id="description" ng-model="model.description"></textarea>
+                    <label for="notes">Notes:</label>
+                    <textarea class="form-control" rows="5" id="notes" ng-model="model.notes"></textarea>
                   </div>
 
-                  <a class="btn btn-primary btn-block btn-lg" ng-click="upload()">Upload</a>
+                  <a class="btn btn-primary btn-block btn-lg" ng-click="outputModel()"> Show Model </a>
+                  <button class="btn btn-primary btn-block btn-lg" ng-disabled="formDataIsInvalid" ng-click="upload()">Upload</Button>
                 </div>
               </div>
+
             </div>
           </div>
         </div>

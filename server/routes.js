@@ -1,3 +1,6 @@
+// Contains all the routes used by the application. These include API routes
+// view routes, and static mapping redirects for our assets
+
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
@@ -9,10 +12,12 @@ module.exports = function(app){
     var sysConfig = require('./controllers/systemController');
 
     // API paths
-    app.post('/addNewImagePost', bodyParser.json(), imagePost.add);
-    app.get('/getImagePosts', imagePost.findAll);
+    app.post('/addNewImagePost', bodyParser.json(), imagePost.add);  
     app.post('/config', bodyParser.json(), sysConfig.getConfig);
+    app.post('/addNewTag', bodyParser.json(), sysConfig.addTag);
     app.get('/getTags', sysConfig.getTags);
+    app.get('/getPostsByPlateNumber', imagePost.findByPlateNumber);
+    app.get('/getImagePosts', imagePost.findAll);
 
     // Static mapping redirects
     app.use('/js', express.static(__dirname + '/../client/js'));

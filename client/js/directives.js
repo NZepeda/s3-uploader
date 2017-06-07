@@ -1,7 +1,6 @@
 
-var directivesModule = angular.module('Platewatch.directives', []);
-
-directivesModule.directive('file', function() {
+angular.module('Platewatch')
+.directive('file', function() {
   return {
     restrict: 'AE',
     scope: {

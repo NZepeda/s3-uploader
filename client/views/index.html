@@ -1,3 +1,5 @@
+<!-- Root view. All other views are a partial view within this view -->
+
 <!doctype html>
 <html ng-app="Platewatch">
 <head>
@@ -6,34 +8,48 @@
   <title>Platewatch Image Upload</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- JQuery -->
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="components/toastr/toastr.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="scripts/ng-tags-input/build/ng-tags-input.css">
-
   <!-- JavaScript Libs -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="scripts/datatables.net/js/jquery.dataTables.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="scripts/angular/angular.js"></script>
   <script src="components/toastr/toastr.min.js"></script>
   <script src="components/aws-sdk-js/dist/aws-sdk.min.js"></script>
   <script src="scripts/ng-tags-input/build/ng-tags-input.js"></script>
   <script src="scripts/angular-route/angular-route.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="scripts/angular-resource/angular-resource.min.js"></script>
+  <script src="scripts/fuse.js/dist/fuse.min.js"></script>
+  <script src="scripts/lodash/lodash.min.js"></script>
+  <script src="components/datejs/datejs.min.js"></script>
 
+
+  <!-- Datatable script -->
+  <script src="scripts/datatables.net-bs/js/dataTables.bootstrap.js"></script>
+  <script src="components/angular-datatables/angular-datatables.min.js"></script>
+  <script src="components/angular-datatables/angular-datatables.bootstrap.min.js"></script>
+  <!-- -->
+  
   <!-- Our JavaScript -->
   <script src="js/application.js"></script>
-  <script src="js/controllers.js"></script>
+  <script src="js/controllers/uploadController.js"></script>
+  <script src="js/controllers/plateTableController.js"></script>
+  <script src="js/controllers/detailedViewController.js"></script>
   <script src="js/directives.js"></script>
   <script src="js/services.js"></script>
 
+    <!-- Styles -->
+  <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="scripts/dataTables.net-bs/css/dataTables.bootstrap.css">
+  <link rel="stylesheet" href="components/toastr/toastr.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="scripts/ng-tags-input/build/ng-tags-input.css">
+  <link rel="stylesheet" href="components/angular-datatables/angular-datatables.min.css">
 </head>
 <body>
 
   <nav class="navbar navbar-default">
     <div class="container-fluid">
+      
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
@@ -44,10 +60,10 @@
         </button>
         <a class="navbar-brand" href="#">Platewatch</a>
       </div>
+
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-left
-        ">
+        <ul class="nav navbar-nav navbar-left">
           <li class="active"><a href="/">Upload<span class="sr-only">(current)</span></a></li>
           <li><a href="/data">Data Visualization</a></li>
         </ul>

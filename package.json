@@ -1,7 +1,7 @@
 {
-  "name": "platewatch-image-uploader",
-  "version": "1.0.0",
-  "description": "This will be used to upload images and store them in an s3 bucket",
+  "name": "platewatch",
+  "version": "0.0.1",
+  "description": "Platewatch project used for image uploading and data visualization",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,20 +11,26 @@
     "type": "git",
     "url": "none"
   },
-  "author": "Nestor Zepeda",
+  "author": "Monterey Bay Aquarium",
   "license": "ISC",
   "dependencies": {
     "angular": "^1.6.4",
+    "angular-datatables": "^4.1.0",
+    "angular-resource": "^1.6.4",
     "angular-route": "^1.6.4",
     "body-parser": "^1.17.1",
+    "datatables.net": "^1.10.15",
+    "datatables.net-bs": "^1.10.15",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
+    "fuse.js": "^3.0.4",
+    "lodash": "^4.17.4",
     "mongodb": "^2.2.25",
     "mongoose": "^4.9.3",
     "ng-tags-input": "^3.1.2"
   },
-  "engines" : {
-    "node" : "~4.2.4",
-    "npm" : "2.14.12"
+  "engines": {
+    "node": "~4.2.4",
+    "npm": "2.14.12"
   }
 }
